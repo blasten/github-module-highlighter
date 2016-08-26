@@ -1,0 +1,7 @@
+.node-module {
+  cursor: pointer;
+}
+
+.node-module:hover {
+  text-decoration: underline;
+}
