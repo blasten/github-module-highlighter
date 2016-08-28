@@ -1,7 +1,7 @@
 {
   "name": "GitHub Module Highlighter",
   "description": "Highlights JavaScript modules (in CommonJS or ES6 imports) on GitHub",
-  "version": "1.0",
+  "version": "1.0.1",
   "permissions": [
     "storage",
     "webRequest",
