@@ -21,10 +21,8 @@
   }
 
   function populatePackageInfo(info) {
-    let newPackageNames = [];
     info.forEach(packageInfo => {
       if (packageInfo.name != null) {
-        newPackageNames.push(packageInfo.name);
         pkgCache[packageInfo.name] = packageInfo;
       }
     });
@@ -56,7 +54,7 @@
         return;
       }
       fetch(`${getHost()}/?modules=${encodeURIComponent(modules.join(','))}`).
-        then(content => content.json().then(info => populatePackageInfo(info)));
+          then(content => content.json().then(info => populatePackageInfo(info)));
     });
   }
 
