@@ -1,11 +1,11 @@
 ![](icon128.png)
 # GitHub Module Highlighter
 
-Highlights JavaScript modules _in CommonJS or ES6 imports_ on GitHub.
+Chrome extension to navigate directly to the source code of JS modules on GitHub. Works for third parties modules and project files written in CommonJS or ES6 imports.
 
 [**Get the Chrome extension**](https://chrome.google.com/webstore/detail/github-module-highlighter/pmfpkkicfnpgmkkimjifdofcdomclhkf)
 
-<a href="https://chrome.google.com/webstore/detail/github-module-highlighter/pmfpkkicfnpgmkkimjifdofcdomclhkf"><img src="animated.gif" width="600" height="340"></a>
+<a href="https://chrome.google.com/webstore/detail/github-module-highlighter/pmfpkkicfnpgmkkimjifdofcdomclhkf"><img src="animated.gif"></a>
 
 It can take _very_ long to quickly scan JS code on GitHub,
 but with this extension some of those problems go away.
