@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-  const pkgCache = {};
   const IMPORT_CLASS_NAME = 'node-module';
   const LONG_LIFE_CACHE = true;
   const HOSTS = [
@@ -13,7 +12,7 @@
     '//npm-proxy-igndvghapw.now.sh',
     '//npm-proxy-nhrpsicmts.now.sh'
   ];
-
+  let pkgCache = {};
   let tooltip = null;
 
   function getHost() {
@@ -62,7 +61,7 @@
     if (node.innerText != 'require' || !node.nextElementSibling) {
       return false;
     }
-    const firstChar = node.nextElementSibling.innerText.charAt(0);
+    let firstChar = node.nextElementSibling.innerText.charAt(0);
     return firstChar == '\'' || firstChar == '"';
   }
 
@@ -78,7 +77,7 @@
     if (node.innerText != 'import') {
       return false;
     }
-    const firstChar = node.parentElement.lastElementChild.innerText.charAt(0);
+    let firstChar = node.parentElement.lastElementChild.innerText.charAt(0);
     return firstChar == '\'' || firstChar == '"';
   }
 
@@ -107,10 +106,10 @@
     if (!event.target.classList.contains(IMPORT_CLASS_NAME)) {
       return;
     }
-    const target = event.target;
-    const importName = target.dataset.npmModule;
-    const rootPackage = importName.replace(/\/.+/, '');
-    const packageInfo = pkgCache[rootPackage];
+    let target = event.target;
+    let importName = target.dataset.npmModule;
+    let rootPackage = importName.replace(/\/.+/, '');
+    let packageInfo = pkgCache[rootPackage];
 
     if (/^\.+?\//.test(importName)) {
       // It's an import from the project's namescape
@@ -118,10 +117,8 @@
       // Resolve path
       window.location.href = (new URL(path, window.location.href)).href;
     } else if (!packageInfo) {
-
       window.location.href = `//www.npmjs.com/package/${importName}`;
     } else if (!packageInfo.repository) {
-
       window.location.href = `//www.npmjs.com/package/${importName}`;
     } else {
       let repoUrl = packageInfo.repository.url;
@@ -157,10 +154,9 @@
       }
       return;
     }
-
-    const importName = target.dataset.npmModule;
-    const rootPackage = importName.replace(/\/.+/, '');
-    const packageInfo = pkgCache[rootPackage];
+    let importName = target.dataset.npmModule;
+    let rootPackage = importName.replace(/\/.+/, '');
+    let packageInfo = pkgCache[rootPackage];
 
     if (!packageInfo) {
       return;
@@ -184,6 +180,7 @@
   function inject(fn) {
     let script = document.createElement('script');
     let parent = document.documentElement;
+
     script.textContent = '('+ fn +')();';
     parent.appendChild(script);
     parent.removeChild(script);
@@ -192,7 +189,6 @@
   inject(_ => {
     let pushState = window.history.pushState;
     let replaceState = window.history.replaceState;
-
     // Post a message whenever history.pushState is called. GitHub uses
     // pushState to implement page transitions without full page loads.
     // This needs to be injected because content scripts run in a sandbox.
@@ -277,5 +273,4 @@
   // Install global event listeners.
   window.addEventListener('click', globalClickHandler);
   window.addEventListener('mouseover', globalMouseOver);
-
 })();
